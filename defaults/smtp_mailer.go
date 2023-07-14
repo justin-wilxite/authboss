@@ -11,14 +11,14 @@ import (
 	"time"
 
 	"github.com/friendsofgo/errors"
-	"github.com/volatiletech/authboss/v3"
+	"github.com/justin-wilxite/authboss/v3"
 )
 
 // NewSMTPMailer creates an SMTP Mailer to send emails with.
 // An example usage might be something like:
 //
-//   NewSMTPMailer("smtp.gmail.com",
-//     smtp.PlainAuth("", "admin@yoursite.com", "password", "smtp.gmail.com"))
+//	NewSMTPMailer("smtp.gmail.com",
+//	  smtp.PlainAuth("", "admin@yoursite.com", "password", "smtp.gmail.com"))
 func NewSMTPMailer(server string, auth smtp.Auth) *SMTPMailer {
 	if len(server) == 0 {
 		panic("SMTP Mailer must be created with a server string.")

@@ -4,7 +4,7 @@ import (
 	"context"
 	"testing"
 
-	"github.com/volatiletech/authboss/v3"
+	"github.com/justin-wilxite/authboss/v3"
 )
 
 func TestJSONRenderer(t *testing.T) {

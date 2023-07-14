@@ -11,7 +11,7 @@ Of course the standard practice of fetching the library is just the beginning:
 
 ```bash
 # Get the latest, you must be using Go modules as of v3 of Authboss.
-go get -u github.com/volatiletech/authboss/v3
+go get -u github.com/justin-wilxite/authboss/v3
 ```
 
 Here's a bit of starter code that was stolen from the sample.

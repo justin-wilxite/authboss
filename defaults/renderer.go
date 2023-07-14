@@ -4,7 +4,7 @@ import (
 	"context"
 	"encoding/json"
 
-	"github.com/volatiletech/authboss/v3"
+	"github.com/justin-wilxite/authboss/v3"
 )
 
 var (

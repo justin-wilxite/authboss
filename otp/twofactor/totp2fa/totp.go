@@ -13,10 +13,10 @@ import (
 	"path"
 
 	"github.com/friendsofgo/errors"
+	"github.com/justin-wilxite/authboss/v3"
+	"github.com/justin-wilxite/authboss/v3/otp/twofactor"
 	"github.com/pquerna/otp"
 	"github.com/pquerna/otp/totp"
-	"github.com/volatiletech/authboss/v3"
-	"github.com/volatiletech/authboss/v3/otp/twofactor"
 )
 
 const (

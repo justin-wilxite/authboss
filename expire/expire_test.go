@@ -7,8 +7,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/volatiletech/authboss/v3"
-	"github.com/volatiletech/authboss/v3/mocks"
+	"github.com/justin-wilxite/authboss/v3"
+	"github.com/justin-wilxite/authboss/v3/mocks"
 )
 
 func TestExpireSetup(t *testing.T) {

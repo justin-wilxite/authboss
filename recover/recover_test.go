@@ -5,15 +5,15 @@ import (
 	"crypto/sha512"
 	"encoding/base64"
 	"errors"
-	"github.com/volatiletech/authboss/v3/defaults"
+	"github.com/justin-wilxite/authboss/v3/defaults"
 	"net/http"
 	"net/http/httptest"
 	"strings"
 	"testing"
 	"time"
 
-	"github.com/volatiletech/authboss/v3"
-	"github.com/volatiletech/authboss/v3/mocks"
+	"github.com/justin-wilxite/authboss/v3"
+	"github.com/justin-wilxite/authboss/v3/mocks"
 )
 
 const (

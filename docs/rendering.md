@@ -1,6 +1,6 @@
 # Rendering
 
-The authboss rendering system is simple. It's defined by one interface: [Renderer](https://pkg.go.dev/github.com/volatiletech/authboss/v3/#Renderer)
+The authboss rendering system is simple. It's defined by one interface: [Renderer](https://pkg.go.dev/github.com/justin-wilxite/authboss/v3/#Renderer)
 
 The renderer knows how to load templates, and how to render them with some data and that's it.
 So let's examine the most common view types that you might want to use.
@@ -34,6 +34,6 @@ They're in the file [html_data.go](https://github.com/volatiletech/authboss/blob
 and are constants prefixed with `Data`. See the documentation in that file for more information on
 which keys exist and what they contain.
 
-The default [responder](https://pkg.go.dev/github.com/volatiletech/authboss/v3/defaults/#Responder)
+The default [responder](https://pkg.go.dev/github.com/justin-wilxite/authboss/v3/defaults/#Responder)
 also happens to collect data from the Request context, and hence this is a great place to inject
 data you'd like to render (for example data for your html layout, or csrf tokens).

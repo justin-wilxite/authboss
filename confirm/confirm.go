@@ -32,10 +32,6 @@ const (
 	DataConfirmURL = "url"
 )
 
-func init() {
-	authboss.RegisterModule("confirm", &Confirm{})
-}
-
 // Confirm module
 type Confirm struct {
 	*authboss.Authboss

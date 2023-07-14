@@ -16,10 +16,6 @@ const (
 	PageRegister = "register"
 )
 
-func init() {
-	authboss.RegisterModule("register", &Register{})
-}
-
 // Register module.
 type Register struct {
 	*authboss.Authboss

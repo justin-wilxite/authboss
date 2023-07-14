@@ -32,11 +32,6 @@ const (
 	recoverInitiateSuccessFlash = "An email has been sent to you with further instructions on how to reset your password."
 )
 
-func init() {
-	m := &Recover{}
-	authboss.RegisterModule("recover", m)
-}
-
 // Recover module
 type Recover struct {
 	*authboss.Authboss

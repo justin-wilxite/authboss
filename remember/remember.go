@@ -18,10 +18,6 @@ const (
 	nNonceSize = 32
 )
 
-func init() {
-	authboss.RegisterModule("remember", &Remember{})
-}
-
 // Remember module
 type Remember struct {
 	*authboss.Authboss

@@ -55,10 +55,6 @@ func MustBeOTPable(user authboss.User) User {
 	return u
 }
 
-func init() {
-	authboss.RegisterModule("otp", &OTP{})
-}
-
 // OTP module
 type OTP struct {
 	*authboss.Authboss

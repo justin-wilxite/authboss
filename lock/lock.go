@@ -16,10 +16,6 @@ const (
 	StoreLocked        = "locked"
 )
 
-func init() {
-	authboss.RegisterModule("lock", &Lock{})
-}
-
 // Lock module
 type Lock struct {
 	*authboss.Authboss

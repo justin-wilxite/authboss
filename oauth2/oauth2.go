@@ -3,29 +3,29 @@
 // only the web server flow is supported.
 //
 // The general flow looks like this:
-//   1. User goes to Start handler and has his session packed with goodies
-//      then redirects to the OAuth service.
-//   2. OAuth service returns to OAuthCallback which extracts state and
-//      parameters and generally checks that everything is ok. It uses the
-//      token received to get an access token from the oauth2 library
-//   3. Calls the OAuth2Provider.FindUserDetails which should return the user's
-//      details in a generic form.
-//   4. Passes the user details into the OAuth2ServerStorer.NewFromOAuth2 in
-//      order to create a user object we can work with.
-//   5. Saves the user in the database, logs them in, redirects.
+//  1. User goes to Start handler and has his session packed with goodies
+//     then redirects to the OAuth service.
+//  2. OAuth service returns to OAuthCallback which extracts state and
+//     parameters and generally checks that everything is ok. It uses the
+//     token received to get an access token from the oauth2 library
+//  3. Calls the OAuth2Provider.FindUserDetails which should return the user's
+//     details in a generic form.
+//  4. Passes the user details into the OAuth2ServerStorer.NewFromOAuth2 in
+//     order to create a user object we can work with.
+//  5. Saves the user in the database, logs them in, redirects.
 //
 // In order to do this there are a number of parts:
-//   1. The configuration of a provider
-//      (handled by authboss.Config.Modules.OAuth2Providers).
-//   2. The flow of redirection of client, parameter passing etc
-//      (handled by this package)
-//   3. The HTTP call to the service once a token has been retrieved to
-//      get user details (handled by OAuth2Provider.FindUserDetails)
-//   4. The creation of a user from the user details returned from the
-//      FindUserDetails (authboss.OAuth2ServerStorer)
-//   5. The special casing of the ServerStorer implementation's Load()
-//      function to deal properly with incoming OAuth2 pids. See
-//      authboss.ParseOAuth2PID as a way to do this.
+//  1. The configuration of a provider
+//     (handled by authboss.Config.Modules.OAuth2Providers).
+//  2. The flow of redirection of client, parameter passing etc
+//     (handled by this package)
+//  3. The HTTP call to the service once a token has been retrieved to
+//     get user details (handled by OAuth2Provider.FindUserDetails)
+//  4. The creation of a user from the user details returned from the
+//     FindUserDetails (authboss.OAuth2ServerStorer)
+//  5. The special casing of the ServerStorer implementation's Load()
+//     function to deal properly with incoming OAuth2 pids. See
+//     authboss.ParseOAuth2PID as a way to do this.
 //
 // Of these parts, the responsibility of the authboss library consumer
 // is on 1, 3, 4, and 5. Configuration of providers that should be used is
@@ -68,10 +68,6 @@ var (
 // OAuth2 module
 type OAuth2 struct {
 	*authboss.Authboss
-}
-
-func init() {
-	authboss.RegisterModule("oauth2", &OAuth2{})
 }
 
 // Init module

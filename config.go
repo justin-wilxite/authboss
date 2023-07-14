@@ -239,6 +239,12 @@ type Config struct {
 		// Mailer is the mailer being used to send e-mails out via smtp
 		Mailer Mailer
 
+		// Hasher hashes passwords into hashes
+		Hasher Hasher
+
+		// CredsGenerator generates credentials (selector+verified+token)
+		CredsGenerator CredsGenerator
+
 		// Logger implies just a few log levels for use, can optionally
 		// also implement the ContextLogger to be able to upgrade to a
 		// request specific logger.

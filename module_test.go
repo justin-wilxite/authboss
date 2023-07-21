@@ -14,10 +14,6 @@ var (
 	testMod = &testModule{}
 )
 
-func init() {
-	RegisterModule(testModName, testMod)
-}
-
 type testModule struct{}
 
 func (t *testModule) Init(a *Authboss) error { return nil }
@@ -25,7 +21,8 @@ func (t *testModule) Init(a *Authboss) error { return nil }
 func TestRegister(t *testing.T) {
 	t.Parallel()
 
-	// RegisterModule called by init()
+	RegisterModule(testModName, testMod)
+
 	if _, ok := registeredModules[testModName]; !ok {
 		t.Error("Expected module to be saved.")
 	}
@@ -34,7 +31,7 @@ func TestRegister(t *testing.T) {
 func TestLoadedModules(t *testing.T) {
 	t.Parallel()
 
-	// RegisterModule called by init()
+	RegisterModule(testModName, testMod)
 	registered := RegisteredModules()
 	if len(registered) != 1 {
 		t.Error("Expected only a single module to be loaded.")
@@ -55,6 +52,7 @@ func TestLoadedModules(t *testing.T) {
 func TestIsLoaded(t *testing.T) {
 	t.Parallel()
 
+	RegisterModule(testModName, testMod)
 	ab := New()
 	if err := ab.Init(); err != nil {
 		t.Error(err)

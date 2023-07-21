@@ -49,6 +49,8 @@ func (a *Authboss) Init(modulesToLoad ...string) error {
 		}
 	}
 
+	registeredModules = make(map[string]Moduler)
+
 	return nil
 }
 
@@ -99,7 +101,7 @@ func VerifyPassword(user AuthableUser, password string) error {
 // in order to access the routes in protects. Requirements is a bit-set integer
 // to be able to easily combine requirements like so:
 //
-//   authboss.RequireFullAuth | authboss.Require2FA
+//	authboss.RequireFullAuth | authboss.Require2FA
 type MWRequirements int
 
 // MWRespondOnFailure tells authboss.Middleware how to respond to
@@ -156,7 +158,7 @@ func MountedMiddleware(ab *Authboss, mountPathed, redirectToLogin, forceFullAuth
 //
 // requirements are set by logical or'ing together requirements. eg:
 //
-//   authboss.RequireFullAuth | authboss.Require2FA
+//	authboss.RequireFullAuth | authboss.Require2FA
 //
 // failureResponse is how the middleware rejects the users that don't meet
 // the criteria. This should be chosen from the MWRespondOnFailure constants.

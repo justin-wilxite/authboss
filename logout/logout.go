@@ -8,10 +8,6 @@ import (
 	"github.com/justin-wilxite/authboss/v3"
 )
 
-func init() {
-	authboss.RegisterModule("logout", &Logout{})
-}
-
 // Logout module
 type Logout struct {
 	*authboss.Authboss

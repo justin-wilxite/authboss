@@ -13,10 +13,6 @@ const (
 	PageLogin = "login"
 )
 
-func init() {
-	authboss.RegisterModule("auth", &Auth{})
-}
-
 // Auth module
 type Auth struct {
 	*authboss.Authboss

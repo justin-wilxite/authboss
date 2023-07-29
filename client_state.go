@@ -67,7 +67,7 @@ const (
 type ClientStateEvent struct {
 	Kind  ClientStateEventKind
 	Key   string
-	Value string
+	Value any
 }
 
 // ClientStateReadWriter is used to create a cookie storer from an http request.
@@ -98,7 +98,7 @@ type UnderlyingResponseWriter interface {
 // ClientState represents the client's current state and can answer queries
 // about it.
 type ClientState interface {
-	Get(key string) (string, bool)
+	Get(key string) (any, bool)
 }
 
 // ClientStateResponseWriter is used to write out the client state at the last
@@ -308,8 +308,17 @@ func DelSession(w http.ResponseWriter, key string) {
 	delState(w, CTXKeySessionState, key)
 }
 
-// GetSession fetches a value from the session
+// GetSession fetches a value from the session as a string
 func GetSession(r *http.Request, key string) (string, bool) {
+	v, ok := getState(r, CTXKeySessionState, key)
+	if str, ok2 := v.(string); !ok2 {
+		return str, ok2
+	}
+	return v.(string), ok
+}
+
+// GetSessionAny fetches a value from the session
+func GetSessionAny(r *http.Request, key string) (any, bool) {
 	return getState(r, CTXKeySessionState, key)
 }
 
@@ -325,10 +334,11 @@ func DelCookie(w http.ResponseWriter, key string) {
 
 // GetCookie fetches a value from the session
 func GetCookie(r *http.Request, key string) (string, bool) {
-	return getState(r, CTXKeyCookieState, key)
+	v, ok := getState(r, CTXKeyCookieState, key)
+	return v.(string), ok
 }
 
-func putState(w http.ResponseWriter, CTXKey contextKey, key, val string) {
+func putState(w http.ResponseWriter, CTXKey contextKey, key string, val any) {
 	setState(w, CTXKey, ClientStateEventPut, key, val)
 }
 
@@ -340,7 +350,7 @@ func delAllState(w http.ResponseWriter, CTXKey contextKey, whitelist []string) {
 	setState(w, CTXKey, ClientStateEventDelAll, strings.Join(whitelist, ","), "")
 }
 
-func setState(w http.ResponseWriter, ctxKey contextKey, op ClientStateEventKind, key, val string) {
+func setState(w http.ResponseWriter, ctxKey contextKey, op ClientStateEventKind, key string, val any) {
 	csrw := MustClientStateResponseWriter(w)
 	ev := ClientStateEvent{
 		Kind: op,
@@ -359,7 +369,7 @@ func setState(w http.ResponseWriter, ctxKey contextKey, op ClientStateEventKind,
 	}
 }
 
-func getState(r *http.Request, ctxKey contextKey, key string) (string, bool) {
+func getState(r *http.Request, ctxKey contextKey, key string) (any, bool) {
 	val := r.Context().Value(ctxKey)
 	if val == nil {
 		return "", false

@@ -3,12 +3,13 @@ package mocks
 
 import (
 	"context"
-	"golang.org/x/crypto/bcrypt"
 	"io"
 	"net/http"
 	"net/url"
 	"strings"
 	"time"
+
+	"golang.org/x/crypto/bcrypt"
 
 	"github.com/friendsofgo/errors"
 	"github.com/justin-wilxite/authboss/v3"
@@ -381,7 +382,7 @@ func NewClientState(data ...string) *ClientState {
 }
 
 // Get a key's value
-func (m *ClientState) Get(key string) (string, bool) {
+func (m *ClientState) Get(key string) (any, bool) {
 	if m.GetShouldFail {
 		return "", false
 	}
@@ -420,7 +421,7 @@ func (c *ClientStateRW) WriteState(w http.ResponseWriter, cstate authboss.Client
 	for _, e := range cse {
 		switch e.Kind {
 		case authboss.ClientStateEventPut:
-			c.ClientValues[e.Key] = e.Value
+			c.ClientValues[e.Key] = e.Value.(string)
 		case authboss.ClientStateEventDel:
 			delete(c.ClientValues, e.Key)
 		case authboss.ClientStateEventDelAll:

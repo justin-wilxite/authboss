@@ -120,7 +120,7 @@ type stateHider struct {
 	cs        authboss.ClientState
 }
 
-func (k stateHider) Get(s string) (string, bool) {
+func (k stateHider) Get(s string) (any, bool) {
 	_, ok := k.whitelist[s]
 	if !ok {
 		return "", false

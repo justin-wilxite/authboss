@@ -3,9 +3,10 @@ package authboss
 import (
 	"context"
 	"encoding/json"
-	"golang.org/x/crypto/bcrypt"
 	"net/http"
 	"time"
+
+	"golang.org/x/crypto/bcrypt"
 )
 
 type mockUser struct {
@@ -175,7 +176,7 @@ func (m mockClientStateReadWriter) WriteState(w http.ResponseWriter, cs ClientSt
 	for _, ev := range evs {
 		switch ev.Kind {
 		case ClientStateEventPut:
-			state[ev.Key] = ev.Value
+			state[ev.Key] = ev.Value.(string)
 		case ClientStateEventDel:
 			delete(state, ev.Key)
 		}
@@ -190,7 +191,7 @@ func (m mockClientStateReadWriter) WriteState(w http.ResponseWriter, cs ClientSt
 	return nil
 }
 
-func (m mockClientState) Get(key string) (string, bool) {
+func (m mockClientState) Get(key string) (any, bool) {
 	val, ok := m[key]
 	return val, ok
 }

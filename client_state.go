@@ -299,7 +299,7 @@ func DelKnownCookie(w http.ResponseWriter) {
 }
 
 // PutSession puts a value into the session
-func PutSession(w http.ResponseWriter, key, val string) {
+func PutSession(w http.ResponseWriter, key string, val any) {
 	putState(w, CTXKeySessionState, key, val)
 }
 
